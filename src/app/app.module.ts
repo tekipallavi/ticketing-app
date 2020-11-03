@@ -10,7 +10,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { TableFilterContainerComponent } from './components/table-filter-container/table-filter-container.component';
 import { CheckInputDirective } from '../shared/directives/check-input.directive';
 import {PaginatorModule} from 'primeng/paginator';
+import {DialogModule} from 'primeng/dialog';
 import {BrowserAnimationsModule} from  '@angular/platform-browser/animations';
+import { CreateTicketComponent } from './components/create-ticket/create-ticket.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,14 +23,18 @@ import {BrowserAnimationsModule} from  '@angular/platform-browser/animations';
     FilterComponent,
     TableComponent,
     TableFilterContainerComponent,
-    CheckInputDirective
+    CheckInputDirective,
+    CreateTicketComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     PaginatorModule,
-    BrowserAnimationsModule
+    DialogModule,
+    BrowserAnimationsModule,
+    FormsModule,    
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

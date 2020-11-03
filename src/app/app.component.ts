@@ -28,6 +28,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
     this.cd.detectChanges();
   }
 
+  showCreateTicketPopupFunc = () => {
+    alert('button clicked');
+  }
+
   showLoader= () => {
     this.loaderCount++;
   }

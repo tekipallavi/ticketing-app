@@ -46,3 +46,37 @@ export const tableColumns = [
 ];
 
 export const details = ["ticketId", "description", "severity","problemType", "customerId", "status", "customerComments", "opertorComments", "pincode"]
+
+export const createTicketFormFields = [ {
+    label: 'Description',
+    type: 'textarea',
+    value: '',
+    formControlName: 'description',
+    dataType: 'string'
+  },{
+    label: 'Severity',
+    type: 'dropdown',
+    value: '',
+    formControlName: 'severity',
+    dataType: 'string',
+    options: ['Critical','Major','Minor']
+  },{
+    label: 'Problem Type',
+    type: 'dropdown',
+    value: '',
+    formControlName: 'problemType',
+    dataType: 'string',
+    options:['Physical Damage', 'Service Issue']
+  },{
+    label: 'Customer Id',
+    type: 'input',
+    value: '',
+    formControlName: 'customerId',
+    dataType: 'string'
+  },{
+    label: 'Pin Code',
+    type: 'input',
+    value: '',
+    formControlName: 'pincode',
+    dataType: 'number'
+  }];

@@ -6,4 +6,10 @@
  <section class='ticketing-app-loader' *ngIf="loaderCount > 0">
   <section class="loader"></section>
  </section>
+ <section class="create-ticket-section">
+  <p-dialog header="Create Ticket" [(visible)]="showCreateTicketPopup" [modal]="true"
+  [blockScroll]= "true" [dismissableMask]="true">
+    <ticket-app-create-ticket></ticket-app-create-ticket>
+ </p-dialog>
+ </section>
 </section>

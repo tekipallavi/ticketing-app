@@ -16,14 +16,10 @@ export class TableFilterContainerComponent implements OnInit {
 
   ngOnInit(): void {   
     this.ticketService.getLoaderSubject().next(true); 
-    this.ticketService.getAllTickets().subscribe(ticketData => {
-      /* setTimeout(() => {
-        this.ticketService.getLoaderSubject().next(false);
-      },1000);      */ 
+    this.ticketService.getAllTickets().subscribe(ticketData => {     
       this.ticketService.getLoaderSubject().next(false);
       this.ticketData = ticketData;
-      this.filteredTickets = [...this.ticketData];      
-      //console.log(this.ticketData);
+      this.filteredTickets = [...this.ticketData]; 
     });
   }
 
