@@ -1,0 +1,30 @@
+.table-header{
+    background-color: black;
+    color: white;
+    font-weight: 500;
+}
+.evenRecord {
+    background-color: #dee2e6;
+}
+
+th.table-header {
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    padding: 5px 5px 5px 10px;
+}
+
+td {
+    padding: 10px;
+    font-size: 12px;
+}
+
+.header-table {
+    width: 1210px;
+}
+
+.content-table {
+    overflow-y: scroll;
+    height: 350px;
+    width: 1224.5px;
+}

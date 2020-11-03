@@ -3,14 +3,31 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FilterComponent } from './components/filter/filter.component';
+import { TableComponent } from './components/table/table.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TableFilterContainerComponent } from './components/table-filter-container/table-filter-container.component';
+import { CheckInputDirective } from '../shared/directives/check-input.directive';
+import {PaginatorModule} from 'primeng/paginator';
+import {BrowserAnimationsModule} from  '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FilterComponent,
+    TableComponent,
+    TableFilterContainerComponent,
+    CheckInputDirective
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    PaginatorModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

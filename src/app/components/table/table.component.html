@@ -1,0 +1,26 @@
+<section class="ticketing-app-table-container">
+
+   <section class="header-table">
+    <table>
+        <th *ngFor = "let header of constants.tableColumns" class = 'table-header' [ngStyle]="{width: header.width}"> {{ header.title}}</th>    
+    </table>
+  </section>
+
+  <section class="content-table">
+    <table>  
+        <tr *ngFor = "let record of paginatedData ; even as evenRecord"  [ngClass] = "{evenRecord : evenRecord, oddRecord : !evenRecord}" >
+            <td *ngFor = "let header of constants.tableColumns"  class="data-column"[ngStyle]="{width: header.width}">
+               <a *ngIf = "header.key === 'ticketId'" (click) = "ticketIdClickHandler(record[header.key])"> {{record[header.key]}}</a> 
+               <span *ngIf = "header.key!== 'ticketId'">{{record[header.key]}}</span>
+            </td>
+        </tr>
+    
+    </table>
+</section>
+
+    
+   
+<p-paginator [rows]="constants.staticDataMap.rows" [pageLinkSize]= "constants.staticDataMap.pageLinkSize"
+    [totalRecords]="tableData.length" [rowsPerPageOptions]= "constants.staticDataMap.rowsPerPageOptions"
+    (onPageChange)= "pageChangeHandler($event)" dropdownAppendTo="body"></p-paginator>
+</section>    
