@@ -11,32 +11,32 @@ export const tableColumns = [
     {
         "title": "Ticket Id",
         "key": "ticketId",
-        "width": "350px"
+        "width": "370px"
     },
     {
         "title": "Description",
         "key": "description",
-        "width": "200px"
+        "width": "220px"
     },
     {
         "title": "Severity",
         "key": "severity",
-        "width": "100px"
+        "width": "110px"
     },
     {
         "title": "Problem Type",
         "key": "problemType",
-        "width": "150px"
+        "width": "175px"
     },
     {
         "title": "Status",
         "key": "status",
-        "width": "125px"
+        "width": "140px"
     },
     {
         "title": "Pincode",
         "key": "pincode",
-        "width": "100px"
+        "width": "110px"
     },
     {
         "title": "Customer Id",
