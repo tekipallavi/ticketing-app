@@ -1,15 +1,33 @@
 .ticketing-app-header-container{
     display: flex;
-    flex-direction: col;
-    background-color: black;    
-    padding-top:10px;
+    background-color: #1b2133;    
+    padding:10px;
     .header-appTitle{
        color: white;
        font-size: 35px;  
        width:92%;      
     }
-    .header-createTicketButton{
-        margin-top: 10px;
-        border-radius: 8px;
+    .header-createTicketButton {
+        height: 35PX;
+        border-radius: 7px;
+        border: 2px solid white;
+        background-color: #1b2133;
+        color: white;
+        font-weight: 600;
+        width: 120px;
+        margin-right: 20px;
+        transition: all 1s;
+
+        &:hover, &:focus {
+            border-color: #1b2133;
+            color: #1b2133;
+            background-color: white;
+            cursor: pointer;
+        }
+    }
+
+    .header-createTicket {
+        display: flex;
+        align-items: center;
     }
 }   

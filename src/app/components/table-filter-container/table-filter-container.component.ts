@@ -14,13 +14,18 @@ export class TableFilterContainerComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {   
-    this.ticketService.getLoaderSubject().next(true); 
-    this.ticketService.getAllTickets().subscribe(ticketData => {     
-      this.ticketService.getLoaderSubject().next(false);
-      this.ticketData = ticketData;
-      this.filteredTickets = [...this.ticketData]; 
-    });
+  ngOnInit(): void {  
+    if(!this.ticketService.getTicketUpdateStatus()) {
+      this.ticketService.getLoaderSubject().next(true); 
+      this.ticketService.getAllTickets().subscribe((ticketData:[]) => { 
+        this.filteredTickets = [...ticketData]; 
+        this.ticketService.setTicketData([...ticketData]);    
+        this.ticketService.getLoaderSubject().next(false);        
+        
+      });  
+   }else{
+     this.filteredTickets = [...this.ticketService.getTicketData()];
+   } 
   }
 
   onFilterChange = (filterText)=> {
@@ -29,14 +34,14 @@ export class TableFilterContainerComponent implements OnInit {
  }
 
  onSortFilterChange = criteria => {
-  this.filteredTickets = [...this.ticketData];
-     
-  if(criteria.filterText && criteria.filterText !==''){    
-     this.filteredTickets = this.filteredTickets.filter(alarm => {
-      return Object.values(alarm).some(alarmColumnData => alarmColumnData.toString().indexOf(criteria.filterText) != -1);        
+  const allTickets = [...this.ticketService.getTicketData()];
+  if(criteria.filterText){    
+     this.filteredTickets = allTickets.filter(ticket => {
+      return Object.values(ticket).some(ticketColumnData => ticketColumnData.toString().toUpperCase().indexOf(criteria.filterText.toUpperCase()) != -1);        
      })       
+  } else if(criteria.filterText ===''){
+    this.filteredTickets = allTickets;
   }
-
  }
 
 }

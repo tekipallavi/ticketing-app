@@ -4,12 +4,45 @@
     height:300px;
     width:500px;
     justify-content: left;
-    padding:40px;
+    padding:10px;
 }
 
-.ticket-field{
+.ticket-field {
     display:flex;   
+    flex-direction: column;
     justify-content: left;
     align-content: space-around;
     margin-bottom: 10px;
+ }
+
+ .field-title {
+    font-size: 13px;
+    font-weight: 600;
+ }
+
+ .field-ctr {
+     display: flex;
+ }
+
+ .reset-button {
+     align-self: flex-end;
+    outline: none;
+    border: 0px solid black;
+    border-radius: 2px;
+    background-color: white;
+ }
+
+ .create-textarea {
+     width: 350px;
+     height: 75px;
+ }
+
+ .create-input {
+     width: 170px;
+     padding: 5px;
+ }
+
+ .create-select {
+     width: 170px;
+     padding: 5px;
  }

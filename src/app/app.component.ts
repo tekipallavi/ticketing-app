@@ -1,11 +1,12 @@
-import { Component, OnInit , ChangeDetectorRef, AfterViewChecked} from '@angular/core';
+import { Component, OnInit , ChangeDetectorRef, AfterViewChecked, ViewEncapsulation} from '@angular/core';
 import { TicketService } from './services/ticket-service.service'
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit, AfterViewChecked {  
  
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit(){
+    this.ticketService.getAllTickets();
     this.ticketService.getLoaderSubject().subscribe(
       {next : value => {
         (value ? this.showLoader : this.hideLoader)();
@@ -38,6 +40,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
  
   hideLoader= () => {
     if(this.loaderCount > 0) this.loaderCount--;
+  }
+
+  onTicketCreation = () => {
+    this.showCreateTicketPopup=false;
   }
 
 }

@@ -1,6 +1,7 @@
 
 .ticketing-app-container{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    //font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Be Vietnam';
 }
 
 .ticketing-app-content{
@@ -30,6 +31,10 @@
     position:fixed;
     top:50%;
     left:50%;
+  }
+
+  .dialog-content-class {
+      height: 385px;
   }
   
   @keyframes spin {

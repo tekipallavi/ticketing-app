@@ -3,20 +3,23 @@
     <form [formGroup]= "ticketForm" class="ticket-form" name="TICKET FORM">
 
         <section class="ticket-field" *ngFor= "let field of constants.createTicketFormFields">
-            <section>{{field.label}} :</section>
+            <section class='field-title'>{{field.label}} :</section>
 
-            <section [ngSwitch]="field.type">                
-              <input type="text" *ngSwitchCase= "controlTypes.input" [value]= "field.value" [formControlName]="field.formControlName" />
-              <select *ngSwitchCase= "controlTypes.dropdown" [formControlName]= "field.formControlName" (change)= "dropDownChangeHandler($event)">
-                  <option *ngFor= "let option of field.options" [value]= "option" [selected]="field.value === option">
-                      {{option}}
-                  </option>
-              </select>
-              
-              <textarea *ngSwitchCase= "controlTypes.textarea" [formControlName]= "field.formControlName"></textarea>              
+            <section class='field-ctr'>  
+                <ng-container [ngSwitch]="field.type">           
+                    <input type="text" *ngSwitchCase= "controlTypes.input" class='create-input' [value]= "field.value" [formControlName]="field.formControlName" />
+                    <select *ngSwitchCase= "controlTypes.dropdown" class='create-select' [formControlName]= "field.formControlName" (change)= "dropDownChangeHandler($event)">
+                        <option *ngFor= "let option of field.options" [value]= "option" [selected]="field.value === option">
+                            {{option}}
+                        </option>
+                    </select>
+                    
+                    <textarea *ngSwitchCase= "controlTypes.textarea" class='create-textarea' [formControlName]= "field.formControlName"></textarea>
+                </ng-container> 
+                <button class='reset-button' (click)= "clearField(field)">
+                    <i class='pi pi-refresh'></i>
+                </button>
             </section>
-
-            <section><button (click)= "clearField(field)">Reset</button></section>
         </section>
 
         <section class="form-buttons">

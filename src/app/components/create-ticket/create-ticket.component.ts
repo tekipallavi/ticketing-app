@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import * as constants from '../../utils/constants'
 import { FormGroup, FormBuilder } from '@angular/forms';
+import {v4 as uuidv4} from 'uuid';
+import { TicketService } from '../../services/ticket-service.service';
 
 @Component({
   selector: 'ticket-app-create-ticket',
@@ -11,8 +13,9 @@ export class CreateTicketComponent implements OnInit {
   constants = constants;
   controlTypes:Object = {input:'input',dropdown:'dropdown',radio:'radio',checkbox:'checkbox',textarea:'textarea'}
   ticketForm:FormGroup;
+  @Output() ticketSubmissionEvent = new EventEmitter();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private ticketService:TicketService) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -30,8 +33,15 @@ export class CreateTicketComponent implements OnInit {
 
   }
 
-  onFormSubmit= () => {    
-    console.log("my submitted data",this.ticketForm);
+  onFormSubmit= () => {   
+    const newTicket = {};
+    constants.createTicketFormFields.map(field => {
+      newTicket[field.formControlName]= this.ticketForm.controls[field.formControlName].value;
+    }) 
+    newTicket['ticketId'] = uuidv4();
+    console.log('onFormSubmit', newTicket);
+    this.ticketService.addNewTicket(newTicket);
+    this.ticketSubmissionEvent.emit();
   }
 
   clearForm= () => {

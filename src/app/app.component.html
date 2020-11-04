@@ -8,8 +8,8 @@
  </section>
  <section class="create-ticket-section">
   <p-dialog header="Create Ticket" [(visible)]="showCreateTicketPopup" [modal]="true"
-  [blockScroll]= "true" [dismissableMask]="true">
-    <ticket-app-create-ticket></ticket-app-create-ticket>
+  [blockScroll]= "true" [dismissableMask]="true" contentStyleClass="dialog-content-class">
+    <ticket-app-create-ticket (ticketSubmissionEvent) = "onTicketCreation($event)"></ticket-app-create-ticket>
  </p-dialog>
  </section>
 </section>
