@@ -7,7 +7,8 @@
 
             <section class='field-ctr'>  
                 <ng-container [ngSwitch]="field.type">           
-                    <input type="text" *ngSwitchCase= "controlTypes.input" class='create-input' [value]= "field.value" [formControlName]="field.formControlName" />
+                    <input type="text" *ngSwitchCase= "controlTypes.input" class='create-input'
+                     [value]= "field.value" [formControlName]="field.formControlName" check-input/>
                     <select *ngSwitchCase= "controlTypes.dropdown" class='create-select' [formControlName]= "field.formControlName" (change)= "dropDownChangeHandler($event)">
                         <option *ngFor= "let option of field.options" [value]= "option" [selected]="field.value === option">
                             {{option}}

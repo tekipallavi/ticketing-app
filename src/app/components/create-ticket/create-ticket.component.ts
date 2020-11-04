@@ -3,6 +3,7 @@ import * as constants from '../../utils/constants'
 import { FormGroup, FormBuilder } from '@angular/forms';
 import {v4 as uuidv4} from 'uuid';
 import { TicketService } from '../../services/ticket-service.service';
+import {CheckInputDirective} from '../../../shared/directives/check-input.directive';
 
 @Component({
   selector: 'ticket-app-create-ticket',
@@ -39,6 +40,7 @@ export class CreateTicketComponent implements OnInit {
       newTicket[field.formControlName]= this.ticketForm.controls[field.formControlName].value;
     }) 
     newTicket['ticketId'] = uuidv4();
+    newTicket['status'] = "Open";
     console.log('onFormSubmit', newTicket);
     this.ticketService.addNewTicket(newTicket);
     this.ticketSubmissionEvent.emit();

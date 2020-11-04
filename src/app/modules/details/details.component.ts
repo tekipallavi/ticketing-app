@@ -12,11 +12,6 @@ export class DetailsComponent implements OnInit{
    }
 
    ngOnInit(){
-    this.route.paramMap.subscribe(paramMapData => {
-      console.log("params", paramMapData['params'].id);
-     /* this.ticketService.getTicketById(paramMapData['params'].id).subscribe(ticketDetail => {
-         console.log("ticketDetail", ticketDetail);
-      })*/
-    })
+   
    }
 }

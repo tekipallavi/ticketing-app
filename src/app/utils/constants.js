@@ -45,6 +45,37 @@ export const tableColumns = [
     }
 ];
 
+
+export const detailData = [
+    
+    {
+        "title": "Description",
+        "key": "description"
+    },
+    {
+        "title": "Severity",
+        "key": "severity"
+    },
+    {
+        "title": "Problem Type",
+        "key": "problemType"
+    },    
+    {
+        "title": "Pincode",
+        "key": "pincode"
+    },
+    {
+        "title": "Customer Id",
+        "key": "customerId"
+    },
+    {
+        "title": "Customer Comments",
+        "key": "customerComments"
+    }
+];
+
+
+
 export const details = ["ticketId", "description", "severity","problemType", "customerId", "status", "customerComments", "opertorComments", "pincode"]
 
 export const createTicketFormFields = [ {

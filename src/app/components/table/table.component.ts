@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ViewChild } from '@angular/core';
 import { Router } from '@angular/router'
 import * as constants from '../../utils/constants';
+import { Paginator } from 'primeng/paginator';
+import { TicketService } from 'src/app/services/ticket-service.service';
 
 
 @Component({
@@ -9,22 +11,28 @@ import * as constants from '../../utils/constants';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit, OnChanges {
+  @ViewChild(Paginator) paginator: Paginator
   @Input() tableData:any[] = [];
   paginatedData:any[] = [];
   Object = Object;
   constants = constants;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private ticketService: TicketService) { }
 
   ngOnInit(): void {
     //this.pagination({page:0, rows:10});
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes) {
+    if(changes.tableData && this.paginator) {
+      this.paginator.changePage(0);
+    }
     this.pagination({page:0, rows:10});
   }
 
-  ticketIdClickHandler = (id: string) => {
-    this.router.navigate(['ticketDetail',{id}]);
+  ticketIdClickHandler = (event, ticket) => {
+    event.preventDefault();
+    this.ticketService.storeTicketDetail(ticket);
+    this.router.navigate(['ticketDetail']);
   }
 
   pageChangeHandler = (event): void => {

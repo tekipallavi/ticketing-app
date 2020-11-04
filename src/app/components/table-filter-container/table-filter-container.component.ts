@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TicketService } from '../../services/ticket-service.service';
+//import {Paginator} fro
 
 @Component({
   selector: 'ticketing-app-table-filter-container',
@@ -23,10 +24,16 @@ export class TableFilterContainerComponent implements OnInit {
         this.ticketService.getLoaderSubject().next(false);        
         
       });  
-   }else{
-     this.filteredTickets = [...this.ticketService.getTicketData()];
+   } else {
+    this.updateTicketData();
    } 
+
+   this.ticketService.getTicketsDataUpdatedSubject().subscribe((updateStatus: boolean) => {
+    if(updateStatus) this.updateTicketData();
+   });
   }
+
+  updateTicketData = () =>  this.filteredTickets = [...this.ticketService.getTicketData()];
 
   onFilterChange = (filterText)=> {
     this.sortFilterCriteria['filterText']= filterText;

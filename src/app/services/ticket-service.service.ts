@@ -8,8 +8,10 @@ import {Subject} from 'rxjs'
 
 export class TicketService{
     loaderSubject = new Subject<boolean>();
+    ticketDataSubject = new Subject<boolean>();
     ticketData:any = [];
     ticketUpdateFlag = false;
+    ticketDetail ={};
     constructor(private http: HttpClient){
 
     }
@@ -30,11 +32,29 @@ export class TicketService{
     addNewTicket =  ticket => {
         this.ticketData.unshift(ticket);
         this.ticketUpdateFlag = true;
+        this.ticketDataSubject.next(true);
     }
 
     getTicketUpdateStatus = ():boolean => this.ticketUpdateFlag;
 
-    getTicketData = () => this.ticketData;
+    getTicketsDataUpdatedSubject  = () => this.ticketDataSubject;
+
+    getTicketData = () =>{
+        return this.ticketData;
+    } 
 
     setTicketData = ticketData => this.ticketData = [...ticketData];
+
+    storeTicketDetail = record => {
+      this.ticketDetail = {...record};
+    }
+
+    getTicketDetail = ( ) => this.ticketDetail;
+
+    updateTicket = (id, key, value) => {
+        const idx = this.ticketData.findIndex(ticket => ticket.ticketId === id);
+        this.ticketData[idx][key] = value;
+        this.ticketUpdateFlag = true;
+        this.ticketDataSubject.next(true);
+    }
 }

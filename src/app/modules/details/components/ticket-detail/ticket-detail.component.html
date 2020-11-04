@@ -1,1 +1,30 @@
-This is a ticket detailpage!
+<section class="ticket-detail-root">
+    <section class="ticket-detail-header">
+        <span class="ticketId"> {{ticketDetail.ticketId}}</span>
+        <span class="status" [ngClass]="{'open': ticketDetail.status === 'Open', 'in-progress':ticketDetail.status === 'In Progress', 'resolved': ticketDetail.status === 'Closed' }">{{ticketDetail.status}}</span>
+    </section>
+
+    <section class="ticket-detail-body">
+        <section *ngFor= "let data of constants.detailData" class='data-ctr'> 
+           <span class="data-title"> {{data.title}} : </span>  
+           <span class="data-value"> {{ticketDetail[data.key]}} </span>  
+        </section>
+    </section>
+
+    <section class="ticket-detail-comments">
+        <p class='comments-header'> Operator Comments:</p>
+        <textarea [(ngModel)]="opComments" class="operator-comments">{{ticketDetail.opertorComments}}</textarea>
+    </section>
+
+    <section class="ticket-detail-buttons">
+        <button (click) = "updateOperatorComments($event)" class="update-btn">Update</button>
+        <section [ngSwitch]="ticketDetail['status']">
+          <button *ngSwitchCase="'Open'" class="in-progress-button" (click)="changeTicketStatus('In Progress')">
+              Assign
+          </button>
+          <button *ngSwitchCase="'In Progress'" class="resolve-button" (click)="changeTicketStatus('Resolved')">
+              Close Ticket
+          </button>
+        </section>
+    </section>
+</section>
